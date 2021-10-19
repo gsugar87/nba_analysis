@@ -407,7 +407,7 @@ def get_player_info_fast(url, player_name, player_header=PLAYER_HEADER,
             opp_links.append(cells[opp_index].a['href'])
             boxscore_link = cells[shot_index].a['href']
             shot_link = boxscore_link[0:boxscore_link.rindex('/')+1] + 'shot-chart' + \
-                        boxscore_link[boxscore_link.rindex('/'):]
+                boxscore_link[boxscore_link.rindex('/'):]
             shot_links.append(URL_BASE + shot_link)
     # Now we have the links and the game dates, get the opponent average stats so far
     date_index = header.index('date_game')
@@ -430,8 +430,8 @@ def get_player_info_fast(url, player_name, player_header=PLAYER_HEADER,
     '''
     amended_opp_header = ['opp_'+opp_label for opp_label in opp_header]
     net_header = player_header+shot_header+amended_opp_header
-    net_stats = [player_stats_filtered[i]+net_shot_stats[i] + net_opp_stats[i] \
-                 for i in range(len(player_stats_filtered))]
+    net_stats = [player_stats_filtered[i]+net_shot_stats[i] +
+                 net_opp_stats[i] for i in range(len(player_stats_filtered))]
     return net_header, net_stats
 
 
@@ -462,8 +462,7 @@ def get_active_player_list(alphabet=ALPHABET, verbose=False,
 
 
 def get_active_player_data(min_year=MIN_YEAR_DEFAULT, csv_dir=None, verbose=False,
-                           skip_if_exists=True, save_data=False,
-                           use_active_player_list=False,
+                           skip_if_exists=True,
                            update_latest_games=False,
                            opp_dict_filename=None,
                            shot_dict_filename=None):
@@ -513,14 +512,14 @@ def get_active_player_data(min_year=MIN_YEAR_DEFAULT, csv_dir=None, verbose=Fals
                 write_csv(os.path.join(csv_dir, player_name+'.csv'),
                           net_header, player_data, append=True)
             elif not update_latest_games:
-                write_csv(os.path.join(csv_dir,player_name+'.csv'),
+                write_csv(os.path.join(csv_dir, player_name+'.csv'),
                           net_header, player_data)
             if verbose:
-                print('Saved the data in ' + os.path.join(csv_dir,player_name+'.csv'))
+                print('Saved the data in ' + os.path.join(csv_dir, player_name+'.csv'))
     # Save the opp dictionary and shot dictionary
-    with open(opp_dict_filename,'w') as f:
+    with open(opp_dict_filename, 'w') as f:
         pickle.dump(opp_dict, f)
-    with open(shot_dict_filename,'w') as f:
+    with open(shot_dict_filename, 'w') as f:
         pickle.dump(shot_dict, f)
 
 
