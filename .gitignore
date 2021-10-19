@@ -3,3 +3,7 @@ venv/
 
 # Pycharm
 .idea/
+
+# Player Data
+*.csv
+*.pickle

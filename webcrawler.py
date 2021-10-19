@@ -113,7 +113,7 @@ def write_csv(filename, header, data, append=False):
             else:
                 data_to_add = []
         data = player_data[1:]+data_to_add
-    with open(filename, 'w') as csv_file:
+    with open(filename, 'w', newline='', encoding='utf-8') as csv_file:
         csv_writer = csv.writer(csv_file, delimiter=',')
         csv_writer.writerow(header)
         for dataLine in data:
@@ -477,11 +477,13 @@ def get_active_player_data(min_year=MIN_YEAR_DEFAULT, csv_dir=None, verbose=Fals
             opp_dict = pickle.load(f)
     else:
         opp_dict = {}
+        opp_dict_filename = 'opp_dict.pickle'
     if shot_dict_filename is not None:
         with open(shot_dict_filename) as f:
             shot_dict = pickle.load(f)
     else:
         shot_dict = {}
+        shot_dict_filename='shot_dict.pickle'
     # Get a list of every active player (link and name)
     player_links, player_names = get_active_player_list(verbose=verbose,
                                                         min_year=min_year)
