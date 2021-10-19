@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-This file contains all the functions needed for webcrawling NBA data
+This file contains all the functions needed for webcrawling NBA data from baseketball-reference.com
 """
 
 import urllib.request
@@ -24,60 +24,62 @@ URL_BASE = 'https://www.basketball-reference.com'
 
 # Shot range (in feet) bin thresholds
 SHOT_LIMITS = [3, 10, 16, 22]
-PLAYER_HEADER = ['date_game',
-                 'team_id',
-                 'opp_id',
-                 'game_location',
-                 'gs',
-                 'mp',
-                 'fg',
-                 'fga',
-                 'fg2',
-                 'fg2a',
-                 'fg3',
-                 'fg3a',
-                 'ft',
-                 'fta',
-                 'orb',
-                 'drb',
-                 'trb',
-                 'ast',
-                 'stl',
-                 'blk',
-                 'tov',
-                 'pf',
-                 'pts',
-                 'plus_minus']
-OPP_HEADER = ['fg',
-              'fga',
-              'fg3',
-              'fg3a',
-              'ft',
-              'fta',
-              'orb',
-              'drb',
-              'trb',
-              'ast',
-              'stl',
-              'blk',
-              'tov',
-              'pf',
-              'pts',
-              'opp_fg',
-              'opp_fga',
-              'opp_fg3',
-              'opp_fg3a',
-              'opp_ft',
-              'opp_fta',
-              'opp_orb',
-              'opp_drb',
-              'opp_trb',
-              'opp_ast',
-              'opp_stl',
-              'opp_blk',
-              'opp_tov',
-              'opp_pf',
-              'opp_pts']
+# Headers for the player
+PLAYER_HEADER = ['date_game',        # Date of the game
+                 'team_id',          # The player's team name
+                 'opp_id',           # The opposing team name
+                 'game_location',    # Home or away
+                 'gs',               # Did the player start
+                 'mp',               # Minutes played
+                 'fg',               # Field goals made
+                 'fga',              # Field goals attempted
+                 'fg2',              # 2 point field goals made
+                 'fg2a',             # 2 point field goals attempted
+                 'fg3',              # 3 point field goals made
+                 'fg3a',             # 3 point field goals attempted
+                 'ft',               # Free throws made
+                 'fta',              # Free throws attempted
+                 'orb',              # Offensive rebounds
+                 'drb',              # Defensive rebounds
+                 'trb',              # Total rebounds
+                 'ast',              # Assists
+                 'stl',              # Steals
+                 'blk',              # Blocks
+                 'tov',              # Turnovers
+                 'pf',               # Personal fouls
+                 'pts',              # Points
+                 'plus_minus']       # Plus/minus
+# Headers for the opposing team
+OPP_HEADER = ['fg',                  # Field goals made
+              'fga',                 # Field goals attempted
+              'fg3',                 # 3 point field goals made
+              'fg3a',                # 3 point field goals attempted
+              'ft',                  # Free throws made
+              'fta',                 # Free throws attempted
+              'orb',                 # Offensive rebounds
+              'drb',                 # Defensive rebounds
+              'trb',                 # Total rebounds
+              'ast',                 # Assists
+              'stl',                 # Steals
+              'blk',                 # Blocks
+              'tov',                 # Turnovers
+              'pf',                  # Personal fouls
+              'pts',                 # Points
+              'opp_fg',              # Opposing field goals made
+              'opp_fga',             # Opposing field goals attempted
+              'opp_fg3',             # Opposing 3 point field goals made
+              'opp_fg3a',            # Opposing 3 point field goals attempted
+              'opp_ft',              # Opposing 3 free throws made
+              'opp_fta',             # Opposing 3 free throws attempted
+              'opp_orb',             # Opposing offensive rebounds
+              'opp_drb',             # Opposing defensive rebounds
+              'opp_trb',             # Opposing total rebounds
+              'opp_ast',             # Opposing assists
+              'opp_stl',             # Opposing steals
+              'opp_blk',             # Opposing blocks
+              'opp_tov',             # Opposing turnovers
+              'opp_pf',              # Opposing personal fouls
+              'opp_pts']             # Opposing points
 
 
 def get_soup(url):
